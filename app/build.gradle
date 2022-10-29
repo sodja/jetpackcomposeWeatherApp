@@ -26,6 +26,9 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+        debug {
+            applicationIdSuffix '.debug'
+        }
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -45,6 +48,17 @@ android {
             excludes += '/META-INF/{AL2.0,LGPL2.1}'
         }
     }
+    flavorDimensions 'env'
+    productFlavors {
+        dev {
+            dimension 'env'
+            applicationIdSuffix '.dev'
+            versionNameSuffix '-dev'
+        }
+        prod {
+            dimension 'env'
+        }
+    }
 }
 
 dependencies {
@@ -60,6 +74,8 @@ dependencies {
     implementation "androidx.room:room-runtime:$room_version"
     annotationProcessor "androidx.room:room-compiler:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
+    //DataStore
+    implementation "androidx.datastore:datastore-preferences:$datastore_version"
 
     // Compose
     implementation "androidx.compose.ui:ui:$compose_version"
@@ -67,6 +83,7 @@ dependencies {
     implementation "androidx.compose.ui:ui-tooling-preview:$compose_version"
     // Navigation
     implementation "androidx.navigation:navigation-compose:$navigation_version"
+    androidTestImplementation "androidx.navigation:navigation-testing:$navigation_version"
     // Pager
     implementation "com.google.accompanist:accompanist-pager:$google_accompanist_version"
     // Network
@@ -88,10 +105,12 @@ dependencies {
     testImplementation "com.squareup.okhttp3:mockwebserver:$mock_webserver_version"
     testImplementation "com.google.truth:truth:$google_truth_version"
     testImplementation "org.mockito:mockito-core:$mockito_version"
+
     // UI Test
     androidTestImplementation "androidx.test.ext:junit:$test_ext_version"
     androidTestImplementation "androidx.test.espresso:espresso-core:$test_expresso_version"
     androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
+
     // Debug
     debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
     debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_version"
@@ -100,9 +119,10 @@ dependencies {
     implementation 'androidx.media3:media3-exoplayer:1.0.0-beta02'
     implementation 'androidx.media3:media3-ui:1.0.0-beta02'
 
-    // Test rules and transitive dependencies:
-    androidTestImplementation("androidx.compose.ui:ui-test-junit4:$compose_version")
-    // Needed for createComposeRule, but not createAndroidComposeRule:
-    debugImplementation("androidx.compose.ui:ui-test-manifest:$compose_version")
+    // Location Services
+    implementation 'com.google.android.gms:play-services-location:20.0.0'
+
+    //GLIDE
+    implementation "com.github.bumptech.glide:compose:1.0.0-alpha.1"
 
 }

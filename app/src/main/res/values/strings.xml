@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">WeatherApp</string>
+    <string name="error_message">Error. Please try again</string>
+    <string name="home_title">FEATURED</string>
+    <string name="favorite_title">FAVORITES</string>
+    <string name="export">Export Local data in csv</string>
+    <string name="setting_title">SETTINGS</string>
+    <string name="weather_data_by_day">WEATHER DATA</string>
+    <string name="hour_title">Hour</string>
+    <string name="day_title">Week</string>
+    <string name="setting_message">Temperature unit</string>
+    <string name="reminders_notification_channel_id">alarm6h00</string>
+    <string name="title_notification_reminder">weather</string>
+    <string name="description_notification_reminder">the temperature this morning is </string>
+    <string name="reminders_notification_channel_name">chanel name</string>
 </resources>
